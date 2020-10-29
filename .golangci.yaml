@@ -1,0 +1,20 @@
+linters:
+  disable-all: true
+  enable:
+  - bodyclose
+  - deadcode
+  - errcheck
+  - goconst
+  - gocritic
+  - gocyclo
+  - goimports
+  - golint
+  - gosec
+  - gosimple
+  - govet
+  - ineffassign
+  - misspell
+  - nakedret
+  - lll
+run:
+  deadline: 1m
