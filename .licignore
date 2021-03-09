@@ -1,0 +1,13 @@
+# GoLic, for more details see: https://github.com/kuritka/golic
+# Ignore everything
+*
+
+# But not these files...
+!*.go
+!Makefile
+
+# skipped files
+env/env.go
+
+# ...even if they are in subdirectories
+!*/
