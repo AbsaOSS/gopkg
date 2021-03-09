@@ -2,12 +2,6 @@
 
 Absa Go package library
 
-## Project Health
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-Absa Go package library
-
 ## Absa library
 
 - [env](#env)
