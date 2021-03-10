@@ -15,5 +15,3 @@ jobs:
           version: v1.32
       - name: go test
         run: go test ./...
-
-
