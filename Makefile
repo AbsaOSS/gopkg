@@ -1,4 +1,4 @@
-# Copyright 2021 ABSA Group Limited
+# Copyright 2021 Absa Group Limited
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,5 +20,8 @@ lint:
 .PHONY: license
 license:
 	go install github.com/AbsaOSS/golic@v0.1.2
-	golic inject -c="2021 ABSA Group Limited"
+	golic inject -c="2021 Absa Group Limited"
 
+.PHONY: test
+test: license lint
+	go test ./...
