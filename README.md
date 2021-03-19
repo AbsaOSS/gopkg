@@ -77,21 +77,6 @@ if !k8s.ContainsAnnotations(currentIngress.ObjectMeta, expectedIngress.ObjectMet
 }
 ```
 
-### reflect
-Package reflect provides helper functions related to reflection.
-#### Overview
-Package reflect contains following functions:
- - `GetType(v interface{}) string` returns name of any type. Function is useful in factory testing,
- when you assert returned type. 
-#### Usage
-```go
-impl := NewSomeFactory(someConfig).Get() // returns MyImplementationA, MyImplementationB or nil
-// assert
-assert.NotNil(t, provider)
-assert.Equal(t, "*MyImplementationA", reflect.GetType(impl))
-}
-```
-
 ### shell
 Shell command runner 
 #### Overview
@@ -111,15 +96,10 @@ o, _ = shell.Execute(cmd)
 ### strings
 Package strings provide helper functions related to string
 #### Overview
-Package contains following functions:
-- `MergeAnnotations(target *metav1.ObjectMeta, source *metav1.ObjectMeta)` adds or updates annotations from
-  defaultSource to defaultTarget
-- `ContainsAnnotations(target *metav1.ObjectMeta, source *metav1.ObjectMeta) bool` checks if defaultTarget
-  contains all annotations of defaultSource
-  Any kubernetes resource having ObjectMeta can be passed.
+Package strings contains extensions of standard strings and formatting functions:
+- `Format(v interface{}) string` Format converts type to formatted string. If value is struct, function returns formatted JSON.
+
 #### Usage
 ```go
-if !k8s.ContainsAnnotations(currentIngress.ObjectMeta, expectedIngress.ObjectMeta) {
-    MergeAnnotations(currentIngress.ObjectMeta, expectedIngress.ObjectMeta)
-}
+log.Debug().Msgf("current config: %s",utils.ToString(config))
 ```
