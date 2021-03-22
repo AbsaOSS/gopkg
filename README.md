@@ -97,7 +97,7 @@ o, _ = shell.Execute(cmd)
 Package strings provide helper functions related to string
 #### Overview
 Package strings contains extensions of standard strings and formatting functions:
-- `Format(v interface{}) string` Format converts type to formatted string. If value is struct, function returns formatted JSON.
+- `ToString(v interface{}) string` Format converts type to formatted string. If value is struct, function returns formatted JSON.
 
 #### Usage
 ```go
