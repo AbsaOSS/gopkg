@@ -10,7 +10,7 @@ Absa Go package library
 - [k8s](#k8s)
 - [reflect](#reflect)  
 - [shell](#shell)
-- [strings](#strings)
+- [strings](#string)
 
 ### controller
 package controller extends sigs.k8s.io/controller-runtime [os.Getenv](https://golang.org/pkg/os/#Getenv).
@@ -93,11 +93,11 @@ cmd := shell.Command{
 o, _ = shell.Execute(cmd)
 ```
 
-### strings
-Package strings provide helper functions related to string
+### string
+Package string provide helper functions related to string
 #### Overview
-Package strings contains extensions of standard strings and formatting functions:
-- `ToString(v interface{}) string` Format converts type to formatted string. If value is struct, function returns formatted JSON.
+Package string contains extensions of standard strings and formatting functions:
+- `ToString(v interface{}) string` ToString converts type to formatted string. If value is struct, function returns formatted JSON.
 
 #### Usage
 ```go
