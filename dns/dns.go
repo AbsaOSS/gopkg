@@ -26,12 +26,16 @@ import (
 )
 
 // Dig retrieves list of tuple <IP address, A record > from edge DNS server for specific FQDN
-func Dig(edgeDNSServer, fqdn string) ([]string, error) {
+// if useUDP is false, the TCP protocol will be used
+func Dig(edgeDNSServer, fqdn string, useUDP bool) ([]string, error) {
 	var dig dnsutil.Dig
 	if edgeDNSServer == "" {
 		return nil, fmt.Errorf("empty edgeDNSServer")
 	}
 	err := dig.SetDNS(edgeDNSServer)
+	if !useUDP {
+		dig.Protocol = "tcp"
+	}
 	if err != nil {
 		err = fmt.Errorf("dig error: can't set query dns (%s) with error(%s)", edgeDNSServer, err)
 		return nil, err
