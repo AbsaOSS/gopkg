@@ -24,15 +24,32 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const googleDNS = "8.8.8.8"
+
 func TestValidDig(t *testing.T) {
 	// arrange
 	if !connected() {
 		t.Skipf("no connectivity, skipping")
 	}
-	edgeDNSServer := "8.8.8.8"
+	edgeDNSServer := googleDNS
 	fqdn := "google.com"
 	// act
-	result, err := Dig(edgeDNSServer, fqdn)
+	result, err := Dig(edgeDNSServer, fqdn, false)
+	// assert
+	assert.NoError(t, err)
+	assert.NotEmpty(t, result)
+	assert.NotEmpty(t, result[0])
+}
+
+func TestValidDigTCP(t *testing.T) {
+	// arrange
+	if !connected() {
+		t.Skipf("no connectivity, skipping")
+	}
+	edgeDNSServer := googleDNS
+	fqdn := "google.com"
+	// act
+	result, err := Dig(edgeDNSServer, fqdn, true)
 	// assert
 	assert.NoError(t, err)
 	assert.NotEmpty(t, result)
@@ -44,10 +61,10 @@ func TestEmptyFQDNButValidEdgeDNS(t *testing.T) {
 	if !connected() {
 		t.Skipf("no connectivity, skipping")
 	}
-	edgeDNSServer := "8.8.8.8"
+	edgeDNSServer := googleDNS
 	fqdn := ""
 	// act
-	result, err := Dig(edgeDNSServer, fqdn)
+	result, err := Dig(edgeDNSServer, fqdn, false)
 	// assert
 	assert.NoError(t, err)
 	assert.Nil(t, result)
@@ -58,7 +75,7 @@ func TestEmptyEdgeDNS(t *testing.T) {
 	edgeDNSServer := ""
 	fqdn := "whatever"
 	// act
-	result, err := Dig(edgeDNSServer, fqdn)
+	result, err := Dig(edgeDNSServer, fqdn, false)
 	// assert
 	assert.Error(t, err)
 	assert.Nil(t, result)
@@ -69,7 +86,7 @@ func TestValidEdgeDNSButNonExistingFQDN(t *testing.T) {
 	edgeDNSServer := "localhost"
 	fqdn := "some-valid-ip-fqdn-123"
 	// act
-	result, err := Dig(edgeDNSServer, fqdn)
+	result, err := Dig(edgeDNSServer, fqdn, false)
 	// assert
 	assert.Error(t, err)
 	assert.Nil(t, result)
