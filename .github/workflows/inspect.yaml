@@ -1,7 +1,13 @@
 name: Inspect [linters, tests]
 
 on:
-  [workflow_dispatch, push]
+  workflow_dispatch:
+  push:
+    paths-ignore: ['**.md']
+  pull_request:
+    paths-ignore: ['**.md']
+    branches:
+      - master
 jobs:
   go-inspect:
     name: Inspect packages
